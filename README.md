@@ -2,6 +2,8 @@
 
 **Meup** is a lean web client that shows all your upcoming [meetups](https://www.meetup.com/) in a single page.
 
+try it [here](https://epoch.github.io/meup/)
+
 ## Based on
 
 1. Bundler: [Webpack](http://webpack.github.io/docs/), [Babel](https://babeljs.io)
