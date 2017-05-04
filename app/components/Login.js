@@ -8,7 +8,7 @@ export default class Login extends React.Component {
     const params = { 
       client_id: 'naq8hg8v8kr2gds5tqj3k63f3u',
       response_type: 'token',
-      redirect_uri: 'http://localhost:8080' 
+      redirect_uri: process.env.REDIRECT_URI 
     } 
 
     const url = 'https://secure.meetup.com/oauth2/authorize' + toQs(params)

@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const EnvironmentPlugin = require('webpack').EnvironmentPlugin
 
 const ROOT = path.join(__dirname, '../../')
 
@@ -28,7 +29,11 @@ module.exports = (env = {}) => {
         hash: env.prod ? true : false
       }),
 
-      new ExtractTextPlugin('[name].css')
+      new ExtractTextPlugin('[name].css'),
+
+      new EnvironmentPlugin({
+        REDIRECT_URI: env.prod ? 'https://epoch.github.io/meup/index.html' : 'http://localhost:8080'
+      })
     ],
 
     module: {
