@@ -1,4 +1,6 @@
-
 body {
-  background-color: mistyrose;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  background-color: #fcf9ee;
 }

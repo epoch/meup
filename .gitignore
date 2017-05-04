@@ -36,3 +36,7 @@ jspm_packages
 # project generated files #
 ###########################
 bundle
+
+# custom #
+##########
+temp

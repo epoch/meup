@@ -6,7 +6,7 @@ const ROOT = path.join(__dirname, '../../')
 
 const PATHS = {
   app: path.join(ROOT, 'app'),
-  build: path.join(ROOT, 'build')
+  build: path.join(ROOT, 'docs')
 }
 
 module.exports = (env = {}) => {
@@ -62,7 +62,7 @@ module.exports = (env = {}) => {
     devtool: 'cheap-module-source-map',
     devServer: {
       port: 8080,
-      stats: 'errors-only'
+      stats: 'errors-only'   
     }
   }
 
