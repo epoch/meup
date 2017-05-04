@@ -1,5 +1,5 @@
 import React from 'react'
-import { qs, parseQs } from '../../lib/queryString'
+import { toQs, parseQs } from '../../lib/queryString'
 import RaisedButton from 'material-ui/RaisedButton'
 
 export default class Login extends React.Component {
@@ -11,7 +11,7 @@ export default class Login extends React.Component {
       redirect_uri: 'http://localhost:8080' 
     } 
 
-    const url = 'https://secure.meetup.com/oauth2/authorize' + qs(params)
+    const url = 'https://secure.meetup.com/oauth2/authorize' + toQs(params)
 
     const style = {
       height: '100vh',
