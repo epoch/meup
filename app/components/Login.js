@@ -6,7 +6,7 @@ export default class Login extends React.Component {
 
   render() {
     const params = { 
-      client_id: 'naq8hg8v8kr2gds5tqj3k63f3u',
+      client_id: process.env.CLIENT_ID,
       response_type: 'token',
       redirect_uri: process.env.REDIRECT_URI 
     } 
