@@ -21,10 +21,9 @@ export function saveSession(resp) {
   }
 }
 
-function shouldRenewToken(state) {
-  const timeNow = new Date() / 1000 // in seconds
+export function shouldRenewToken(state, timeNow) {
   console.info('token will expire in', (state.session.expiresAt - timeNow) / 60, 'minutes')
-  return timeNow > state.expiresAt ? true : false
+  return timeNow > state.session.expiresAt ? true : false
 }
 
 export function toLogin() {
@@ -58,7 +57,8 @@ export function receivedMeetups(json) {
 export function fetchMeetups(token) {
   
   return (dispatch, getState) => {
-    if (shouldRenewToken(getState())) {
+    const timeNow = new Date() / 1000 // in seconds  
+    if (shouldRenewToken(getState(), timeNow)) {
       console.info('need to renew token')
       dispatch(toLogin())
     } else {
