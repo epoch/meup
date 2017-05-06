@@ -16,14 +16,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if (this.hasFragment()) {
-      const resp = parseQs(window.location.hash)
-      this.props.dispatch(fetchMeetups())
-    }
-  }
-
-  hasFragment() {
-    return location.hash.length > 0 
   }
 
   show(id) {
@@ -35,14 +27,14 @@ class App extends React.Component {
   }
 
   renderPage() {
-    if (!this.hasFragment()) return <Login />
-
-    const { meetups, meetup, route } = this.props
+    const { meetups, meetup, route, isFetching } = this.props
     switch (route.view) {
       case 'home':
-        return <Meetups meetups={meetups} onSelect={this.show} />
+        return <Meetups meetups={meetups} onSelect={this.show} isFetching={isFetching} />
       case 'show':
         return <MeetupDetails meetup={meetup} onBack={this.home} />
+      case 'login':
+        return <Login />
       default:
         return <Login />
     }
@@ -56,10 +48,13 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.info(state)
   return {
     meetups: state.meetups,
     meetup: state.meetup,
-    route: state.route
+    route: state.route,
+    session: state.session,
+    isFetching: state.isFetching
   }
 }
 
