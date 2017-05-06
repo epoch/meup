@@ -1,5 +1,5 @@
 var expect = require('chai').expect
-import { qs, parseQs } from '../lib/queryString'
+import { toQs, parseQs } from '../lib/queryString'
 
 describe('queryString', () => {
   it('converts object to query string', () => {
@@ -9,7 +9,7 @@ describe('queryString', () => {
     } 
 
     const str = '?response_type=token&redirect_uri=http://localhost:8080'
-    expect(qs(params)).to.be.equal(str)
+    expect(toQs(params)).to.be.equal(str)
   })
 
   it('parse query string to object', () => {
