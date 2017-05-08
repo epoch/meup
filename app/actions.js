@@ -65,6 +65,7 @@ export function fetchMeetups(token) {
       console.info('token still good')
       dispatch(requestMeetups())
       dispatch(toHome())
+      window.location.hash = 'home'
 
       const config = {
         url: 'https://api.meetup.com/self/events',

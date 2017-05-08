@@ -20,10 +20,12 @@ class App extends React.Component {
 
   show(id) {
     this.props.dispatch(toMeetupDetails(id))
+    window.location.hash = 'show/' + id
   }
 
   home() {
     this.props.dispatch(toHome())
+    window.location.hash = 'home'
   }
 
   renderPage() {

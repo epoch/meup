@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { REQUEST_MEETUPS, RECEIVE_MEETUPS, TO_HOME, TO_MEETUP_DETAILS, 
-  TO_LOGIN, SAVE_SESSION, LOAD_DATA, loadData, saveSession, fetchMeetups } from './actions'
+  TO_LOGIN, SAVE_SESSION, LOAD_DATA, toHome, toMeetupDetails, loadData, saveSession, fetchMeetups } from './actions'
 
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -28,6 +28,23 @@ const store = createStore(
   reducer, 
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
+
+function handleHashRouting(event) {
+  try {
+    var [, path] = window.location.href.match(/#(.*)$/)
+    var [page, id] = path.split('/')
+    switch (page) {
+    case 'home':
+      return store.dispatch(toHome())
+    case 'show':
+      return store.dispatch(toMeetupDetails(id))
+    }
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+window.addEventListener('hashchange', handleHashRouting)
 
 const sessionExpiresAt = sessionStorage.getItem('sessionExpiresAt')
 const sessionAccessToken = sessionStorage.getItem('sessionAccessToken')
@@ -51,8 +68,6 @@ if (sessionAccessToken && sessionExpiresAt) {
     store.dispatch(fetchMeetups(oauthResponse.access_token))
   }
 }
-
-window.location.hash = ''
 
 ReactDom.render(
   <Provider store={store}>
