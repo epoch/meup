@@ -10,7 +10,7 @@ const Meetups = ({ meetups, onSelect, isFetching }) => {
       primaryText={meetup.name}
       secondaryText={moment(meetup.time).fromNow()} 
       secondaryTextLines={2}
-      onTouchTap={() => onSelect(meetup.id)}
+      onTouchTap={(event) => onSelect(event, meetup.id)}
       key={index} />
   })
 

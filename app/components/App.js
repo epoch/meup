@@ -18,12 +18,14 @@ class App extends React.Component {
   componentDidMount() {
   }
 
-  show(id) {
+  show(event, id) {
+    event.preventDefault() // workaround for ghostclick https://github.com/callemall/material-ui/issues/5070 
     this.props.dispatch(toMeetupDetails(id))
     window.location.hash = 'show/' + id
   }
 
-  home() {
+  home(event) {
+    event.preventDefault(); // workaround for ghostclick https://github.com/callemall/material-ui/issues/5070 
     this.props.dispatch(toHome())
     window.location.hash = 'home'
   }
