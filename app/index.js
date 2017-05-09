@@ -26,7 +26,9 @@ const loggerMiddleware = createLogger()
 
 const store = createStore(
   reducer, 
-  applyMiddleware(thunkMiddleware, loggerMiddleware)
+  process.env.NODE_ENV === 'development' ?
+  applyMiddleware(thunkMiddleware, loggerMiddleware) :
+  applyMiddleware(thunkMiddleware)
 )
 
 function handleHashRouting(event) {

@@ -32,6 +32,7 @@ module.exports = (env = {}) => {
       new ExtractTextPlugin('[name].css'),
 
       new EnvironmentPlugin({
+        NODE_ENV: env.prod ? 'production' : 'development',
         REDIRECT_URI: env.prod ? 'https://epoch.github.io/meup/index.html' : 'http://localhost:8080',
         CLIENT_ID: env.prod ? 'naq8hg8v8kr2gds5tqj3k63f3u' : 'pr6g9lev3fbdbbioha0l15ntff'
       })
