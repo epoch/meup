@@ -78,6 +78,7 @@ export function fetchMeetups(token) {
       return axios(config)
         .catch(err => {
           // window.location = ''
+          dispatch(toLogin()) // temporary hack to reset app when request fail due to meetup only allowing cors with valid token
         })
         .then(res => {
           return dispatch(receivedMeetups(res.data))
