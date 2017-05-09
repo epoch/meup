@@ -14,6 +14,16 @@ import moment from 'moment'
 import './MeetupDetails.css'
 
 const MeetupDetails = ({meetup, onBack}) => {
+
+  let mapLink = ''
+  let venueName = 'N/A'
+  let venueAddress = ''
+  if (meetup.venue) {
+    mapLink = 'http://www.google.com/maps/place/' + meetup.venue.lat + ',' + meetup.venue.lon
+    venueName = meetup.venue.name
+    venueAddress = meetup.venue.address_1 + ' ' + meetup.venue.city
+  }
+
   return <div>
     <AppBar
       title={moment(meetup.time).fromNow()}
@@ -23,8 +33,10 @@ const MeetupDetails = ({meetup, onBack}) => {
       <ListItem leftIcon={<ActionEvent />} 
         primaryText={moment(meetup.time).format('llll')} />
       <ListItem leftIcon={<CommunicationLocationOn />} 
-        primaryText={meetup.venue ? meetup.venue.name : '?'} 
-        secondaryText={meetup.venue && meetup.venue.address_1} />
+        href={mapLink}
+        target="_blank"
+        primaryText={venueName} 
+        secondaryText={venueAddress} />
       <ListItem leftIcon={<CommunicationForum />} 
         primaryText={meetup.name} 
         secondaryText={meetup.group.name}/>
@@ -35,5 +47,3 @@ const MeetupDetails = ({meetup, onBack}) => {
 }
 
 export default MeetupDetails
-
-
