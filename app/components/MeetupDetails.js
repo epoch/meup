@@ -9,7 +9,9 @@ import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import CardText from 'material-ui/Card/CardText'
+import CardTitle from 'material-ui/Card/CardTitle'
 import moment from 'moment'
+import './MeetupDetails.css'
 
 const MeetupDetails = ({meetup, onBack}) => {
   return <div>
@@ -26,8 +28,9 @@ const MeetupDetails = ({meetup, onBack}) => {
       <ListItem leftIcon={<CommunicationForum />} 
         primaryText={meetup.name} 
         secondaryText={meetup.group.name}/>
-      <Subheader>{meetup.yes_rsvp_count} people are going</Subheader>
     </List>
+    <CardTitle>{meetup.yes_rsvp_count} people are going</CardTitle>
+    <CardText className="card-text" dangerouslySetInnerHTML={{ __html: meetup.description }}></CardText>
   </div>
 }
 
